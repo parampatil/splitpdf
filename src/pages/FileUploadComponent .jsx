@@ -46,21 +46,20 @@ const FileUploadComponent = () => {
 
   const handleSplitAndDownload = async () => {
     try {
-      const response = await axios.post(
-        "http://manavmandal.pythonanywhere.com/split",
-        { file: selectedFile },
-        {
-          responseType: "blob",
-        }
-      );
+      // Trigger the split URL with a GET request
+      const response = await axios.get("http://manavmandal.pythonanywhere.com/split", {
+        responseType: "blob", // Receive response as a blob (binary data)
+      });
 
+      // Create a download URL for the received blob
       const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+      // Create a download link element
       const downloadLink = document.createElement("a");
       downloadLink.href = downloadUrl;
-      downloadLink.setAttribute("download", "split_files.zip");
+      downloadLink.setAttribute("download", "split_files.zip"); // Set download attribute and file name
       document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
+      downloadLink.click(); // Simulate click to trigger download
+      document.body.removeChild(downloadLink); // Remove the download link element after download
     } catch (error) {
       console.error("Split and download failed:", error);
     }
