@@ -2,12 +2,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { useAuth } from "../provider/authProvider";
 import { ProtectedRoute } from "./ProtectedRoute";
 
-import NavBar from "../pages/NavBar";
 import Login from "../pages/Login";
 import Logout from "../pages/Logout";
 import Home from "../pages/Home";
 import UserDashboard from "../pages/UserDashboard";
 import Profile from "../pages/Profile";
+import FileUploadComponent from "../pages/FileUploadComponent ";
 
 const Routes = () => {
   const { token } = useAuth();
@@ -56,6 +56,10 @@ const Routes = () => {
       path: "/login",
       element: <Login />,
     },
+    {
+      path: "/fileupload",
+      element: <FileUploadComponent />,
+    },
   ];
 
   // Combine and conditionally include routes based on authentication status
@@ -65,14 +69,17 @@ const Routes = () => {
       ...(!token ? routesForNotAuthenticatedOnly : []),
       ...routesForAuthenticatedOnly,
     ],
-    { basename: "/usedcars" }
+    { basename: "/splitpdf" }
   );
 
   // Provide the router configuration using RouterProvider
   return (
     <>
-      <NavBar /> {/* Render the NavBar component here */}
-      <RouterProvider router={router} />
+      
+      {/* Render the NavBar component here */}
+      <RouterProvider router={router}>
+        
+      </RouterProvider>
     </>
   );
 };

@@ -1,9 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 const NavBar = () => {
+  const navigate = useNavigate();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark w-100">
       <div className="container">
-        <a className="navbar-brand" href="/">
-          Your Used Car Dealership
+        <a className="navbar-brand" href="/" onClick={() => navigate("/")}>
+          Split Pdf
         </a>
         <button
           className="navbar-toggler"
@@ -19,23 +23,17 @@ const NavBar = () => {
         <div className="collapse navbar-collapse" id="basicNavbarNav">
           <ul className="navbar-nav me-auto">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="/">
+              <a
+                className="nav-link"
+                onClick={() => navigate("/")}
+                aria-current="page"
+              >
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/inventory">
-                Inventory
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/about">
-                About Us
-              </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/contact">
-                Contact
+              <a className="nav-link" onClick={() => navigate("/fileupload")}>
+                Upload Files
               </a>
             </li>
           </ul>

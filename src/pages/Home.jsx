@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -7,11 +8,17 @@ const Home = () => {
     navigate("/login");
   };
 
+  const handleUpload = () => {
+    navigate("/fileupload");
+  };
+
   return (
-    <div>
+    <>
+    <NavBar />
       <h1>Home Page</h1>
-      <button onClick={handleLogin}>Go to Login Page</button>
-    </div>
+      {/* <button onClick={handleLogin}>Go to Login Page</button> */}
+      <button onClick={handleUpload}>Go to File Upload</button>
+    </>
   );
 };
 
